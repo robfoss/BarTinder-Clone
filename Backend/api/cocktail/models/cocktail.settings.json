@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cocktails",
+  "info": {
+    "name": "Cocktail",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 3
+    },
+    "description": {
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "featured": {
+      "type": "boolean"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true,
+      "pluginOptions": {}
+    },
+    "categories": {
+      "via": "cocktails",
+      "collection": "category"
+    },
+    "directions": {
+      "type": "json",
+      "required": true
+    },
+    "ingredients": {
+      "type": "json",
+      "required": true
+    },
+    "keywords": {
+      "type": "json",
+      "required": true
+    },
+    "related": {
+      "collection": "cocktail",
+      "via": "cocktails",
+      "model": "cocktail"
+    },
+    "cocktails": {
+      "collection": "cocktail",
+      "via": "related",
+      "model": "cocktail",
+      "dominant": true
+    },
+    "popular": {
+      "type": "boolean"
+    }
+  }
+}
